@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                 String    @id @default(cuid())
+  email              String    @unique
+  name               String?
+  image              String?
+  slug               String    @unique
+  feedToken          String    @unique @default(uuid())
+  googleAccessToken  String?   @db.Text
+  googleRefreshToken String?   @db.Text
+  googleTokenExpiry  DateTime?
+  createdAt          DateTime  @default(now())
+  events             Event[]
+}
+
+model Event {
+  id               String    @id @default(cuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  submitterName    String
+  eventType        EventType @default(BIRTHDAY)
+  title            String?
+  note             String?   @db.Text
+  month            Int
+  day              Int
+  year             Int?
+  isRecurring      Boolean   @default(true)
+  imageUrl         String?
+  imagePublicId    String?
+  googleEventId    String?
+  calendarSynced   Boolean   @default(false)
+  submitterIp      String?
+  createdAt        DateTime  @default(now())
+}
+
+enum EventType {
+  BIRTHDAY
+  ANNIVERSARY
+  CEREMONY
+  CUSTOM
+}
