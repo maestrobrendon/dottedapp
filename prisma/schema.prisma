@@ -18,28 +18,30 @@ model User {
   googleAccessToken  String?   @db.Text
   googleRefreshToken String?   @db.Text
   googleTokenExpiry  DateTime?
+  onboardingSeen     Boolean   @default(false)
   createdAt          DateTime  @default(now())
   events             Event[]
 }
 
 model Event {
-  id               String    @id @default(cuid())
+  id               String      @id @default(cuid())
   userId           String
-  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   submitterName    String
-  eventType        EventType @default(BIRTHDAY)
+  eventType        EventType   @default(BIRTHDAY)
   title            String?
-  note             String?   @db.Text
+  note             String?     @db.Text
   month            Int
   day              Int
   year             Int?
-  isRecurring      Boolean   @default(true)
+  isRecurring      Boolean     @default(true)
   imageUrl         String?
   imagePublicId    String?
   googleEventId    String?
-  calendarSynced   Boolean   @default(false)
+  calendarSynced   Boolean     @default(false)
   submitterIp      String?
-  createdAt        DateTime  @default(now())
+  source           EventSource @default(GUEST)
+  createdAt        DateTime    @default(now())
 }
 
 enum EventType {
@@ -47,4 +49,9 @@ enum EventType {
   ANNIVERSARY
   CEREMONY
   CUSTOM
+}
+
+enum EventSource {
+  GUEST
+  OWNER
 }

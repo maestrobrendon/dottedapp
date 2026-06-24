@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
+/* ── Design tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #FAF9F7;
+  --surface: #FFFFFF;
+  --ink: #1A1A1A;
+  --mist: #8E8E93;
+  --hairline: #ECEAE7;
+
+  --bloom-peach: #FFD9C2;
+  --bloom-pink: #FFC2D6;
+  --bloom-white: #FFFDFB;
+
+  --coral: #FF7A59;
+  --coral-deep: #FF5C3A;
+
+  --success: #34A853;
+  --warning: #E8A33D;
+
+  --glass-fill: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.6);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Tailwind v4 theme ── */
+@theme {
+  --color-canvas: #FAF9F7;
+  --color-surface: #FFFFFF;
+  --color-ink: #1A1A1A;
+  --color-mist: #8E8E93;
+  --color-hairline: #ECEAE7;
+  --color-coral: #FF7A59;
+  --color-coral-deep: #FF5C3A;
+  --color-bloom-peach: #FFD9C2;
+  --color-bloom-pink: #FFC2D6;
+  --color-bloom-white: #FFFDFB;
+  --color-success: #34A853;
+  --color-warning: #E8A33D;
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Custom gradient utilities ── */
+@utility bg-gradient-bloom {
+  background-image: linear-gradient(135deg, #FFD9C2 0%, #FFC2D6 55%, #FFFDFB 100%);
 }
 
+@utility bg-gradient-sunrise {
+  background-image: linear-gradient(135deg, #FFB199 0%, #FF7A59 100%);
+}
+
+/* ── Base ── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FAF9F7;
+  color: #1A1A1A;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
