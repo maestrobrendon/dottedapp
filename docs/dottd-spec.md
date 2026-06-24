@@ -201,6 +201,7 @@ You asked for this directly, so it's its own section rather than scattered notes
 8. **Structured logging, not console.log scattered everywhere.** One logging utility (`lib/logger.ts`) used consistently, so when something breaks at 11pm before a deadline, the logs actually tell you where.
 9. **Staging before production.** Deploy to a Vercel preview URL first, run the full pre-launch checklist there, then promote to production. Don't debug live on the domain you're about to share with a hundred people.
 10. **One feature branch per build phase**, not one giant commit. If something breaks late, you can isolate which phase introduced it instead of bisecting the whole history.
+11. **Prisma + Vercel needs a `postinstall` hook, or builds fail unpredictably.** Vercel caches `node_modules` between deploys for speed, which means Prisma's generated client can go stale — it only regenerates on a fresh `npm install`, not a cache hit. Add `"postinstall": "prisma generate"` to `package.json`'s scripts the moment Prisma is added to the project, not after the first confusing build failure. This is exactly the kind of error that looks unrelated to anything you changed, which is what makes it worth pinning down here rather than rediscovering it.
 
 ---
 
