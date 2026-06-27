@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { InlineConfirmation } from "./InlineConfirmation";
+import { CopyIconButton } from "./CopyIconButton";
 
 const RESERVED_SLUGS = new Set([
   "api", "app", "admin", "settings", "dashboard", "login", "logout",
@@ -159,6 +160,7 @@ export function SlugEditor({ currentSlug: slugProp, baseUrl }: Props) {
   const canSave = draft !== displaySlug && status === "available";
 
   if (!editing) {
+    const shareUrl = `${baseUrl}/u/${displaySlug}`;
     return (
       <div
         className="group flex items-center justify-between py-1 cursor-pointer rounded-[8px] -mx-1 px-1 hover:bg-[#F5F4F2] transition-colors"
@@ -173,14 +175,17 @@ export function SlugEditor({ currentSlug: slugProp, baseUrl }: Props) {
             {domain}/u/{displaySlug}
           </p>
         </div>
-        <button
-          type="button"
-          onClick={(e) => { e.stopPropagation(); enterEdit(); }}
-          className="text-mist text-sm opacity-0 group-hover:opacity-100 transition-opacity min-h-[44px] px-2 shrink-0 ml-2"
-          tabIndex={-1}
-        >
-          Edit
-        </button>
+        <div className="flex items-center gap-0.5 shrink-0 ml-1">
+          <CopyIconButton url={shareUrl} />
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); enterEdit(); }}
+            className="text-mist text-sm opacity-0 group-hover:opacity-100 transition-opacity min-h-11 px-2 shrink-0"
+            tabIndex={-1}
+          >
+            Edit
+          </button>
+        </div>
       </div>
     );
   }
@@ -199,7 +204,7 @@ export function SlugEditor({ currentSlug: slugProp, baseUrl }: Props) {
           onKeyDown={(e) => e.key === "Escape" && cancel()}
           placeholder={displaySlug}
           maxLength={40}
-          className="bg-[#F0F0EE] rounded-[12px] px-3 py-2 text-ink focus:bg-white focus:ring-2 focus:ring-coral/30 outline-none transition-colors min-h-[44px] min-w-[120px] max-w-[200px]"
+          className="bg-[#F0F0EE] rounded-[12px] px-3 py-2 text-ink focus:bg-white focus:ring-2 focus:ring-coral/30 outline-none transition-colors min-h-11 min-w-30 max-w-50"
           spellCheck={false}
           autoCapitalize="none"
           autoCorrect="off"
@@ -214,7 +219,7 @@ export function SlugEditor({ currentSlug: slugProp, baseUrl }: Props) {
           <button
             type="button"
             onClick={() => setConfirming(true)}
-            className="bg-gradient-sunrise text-white text-sm font-semibold rounded-full px-4 py-2 active:scale-[0.97] transition-transform min-h-[44px]"
+            className="bg-gradient-sunrise text-white text-sm font-semibold rounded-full px-4 py-2 active:scale-[0.97] transition-transform min-h-11"
           >
             Save
           </button>
@@ -222,7 +227,7 @@ export function SlugEditor({ currentSlug: slugProp, baseUrl }: Props) {
         <button
           type="button"
           onClick={cancel}
-          className="text-mist text-sm font-medium px-2 min-h-[44px]"
+          className="text-mist text-sm font-medium px-2 min-h-11"
         >
           Cancel
         </button>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- White body -->
+  <rect x="1" y="1" width="22" height="22" rx="4" fill="white"/>
+  <!-- Red header -->
+  <path d="M1 5C1 2.79 2.79 1 5 1h14c2.21 0 4 1.79 4 4v3H1V5z" fill="#FC3C44"/>
+  <!-- Subtle grid lines -->
+  <line x1="1" y1="12" x2="23" y2="12" stroke="#E5E5EA" stroke-width="0.5"/>
+  <line x1="1" y1="17" x2="23" y2="17" stroke="#E5E5EA" stroke-width="0.5"/>
+  <!-- "31" bold number — what makes this icon recognisable -->
+  <text x="12" y="23" text-anchor="middle" font-size="10" font-weight="700" fill="#1A1A1A" font-family="-apple-system,BlinkMacSystemFont,sans-serif" dy="-1.5">31</text>
+  <!-- Month label on red header -->
+  <text x="12" y="6.5" text-anchor="middle" font-size="4.5" font-weight="600" fill="white" font-family="-apple-system,BlinkMacSystemFont,sans-serif" letter-spacing="0.3">JUN</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- White body with border -->
+  <rect x="1.5" y="2.5" width="21" height="20" rx="2.5" fill="white" stroke="#DADCE0" stroke-width="1"/>
+  <!-- Blue header -->
+  <path d="M1.5 5C1.5 3.62 2.62 2.5 4 2.5h16c1.38 0 2.5 1.12 2.5 2.5v2.5h-21V5z" fill="#1967D2"/>
+  <!-- Ring tabs -->
+  <rect x="7.5" y="1" width="1.5" height="3.5" rx="0.75" fill="#5F6368"/>
+  <rect x="15" y="1" width="1.5" height="3.5" rx="0.75" fill="#5F6368"/>
+  <!-- Colored dot grid — Google brand colors -->
+  <circle cx="7" cy="12" r="1.5" fill="#EA4335"/>
+  <circle cx="12" cy="12" r="1.5" fill="#FBBC04"/>
+  <circle cx="17" cy="12" r="1.5" fill="#34A853"/>
+  <circle cx="7" cy="17.5" r="1.5" fill="#4285F4"/>
+  <circle cx="12" cy="17.5" r="1.5" fill="#EA4335"/>
+  <circle cx="17" cy="17.5" r="1.5" fill="#FBBC04"/>
+</svg>

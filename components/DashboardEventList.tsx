@@ -4,7 +4,13 @@ import { useState } from "react";
 import type { Event } from "@prisma/client";
 import { EventCard } from "./EventCard";
 import { ShareMenu } from "./ShareMenu";
-import { nextOccurrenceDate, daysUntil, relativeLabel, sectionFor, type Section } from "@/lib/dates";
+import {
+  nextOccurrenceDate,
+  daysUntil,
+  relativeLabel,
+  sectionFor,
+  type Section,
+} from "@/lib/dates";
 
 const SECTIONS: Section[] = ["This week", "This month", "Later"];
 
@@ -17,7 +23,13 @@ interface EnrichedEvent {
 function enrich(events: Event[], today: Date): EnrichedEvent[] {
   const result: EnrichedEvent[] = [];
   for (const event of events) {
-    const nextDate = nextOccurrenceDate(event.month, event.day, event.year, event.isRecurring, today);
+    const nextDate = nextOccurrenceDate(
+      event.month,
+      event.day,
+      event.year,
+      event.isRecurring,
+      today,
+    );
     if (!nextDate) continue;
     result.push({ event, nextDate, days: daysUntil(nextDate, today) });
   }
@@ -47,9 +59,7 @@ export function DashboardEventList({ initialEvents, shareUrl }: Props) {
           <p className="text-ink font-medium">No dates saved yet.</p>
           <p className="text-mist text-sm">Share your link to start collecting.</p>
         </div>
-        {shareUrl && (
-          <ShareMenu url={shareUrl} label="Your share link" />
-        )}
+        {shareUrl && <ShareMenu url={shareUrl} label="Your share link" />}
       </div>
     );
   }
@@ -68,13 +78,16 @@ export function DashboardEventList({ initialEvents, shareUrl }: Props) {
         if (!items?.length) return null;
         return (
           <div key={section} className="space-y-3">
-            <p className="text-mist text-xs font-medium uppercase tracking-wide">{section}</p>
+            <p className="text-mist text-xs font-medium uppercase tracking-wide">
+              {section}
+            </p>
             {items.map(({ event, days }) => (
               <EventCard
                 key={event.id}
                 event={event}
                 onDelete={removeEvent}
                 relativeTime={relativeLabel(days)}
+                section={section}
               />
             ))}
           </div>
